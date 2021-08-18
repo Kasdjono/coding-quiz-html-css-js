@@ -12,6 +12,7 @@
 
 <body>
 
+    <!-- Header -->
     <header class="header">
         <h1>Coding Quiz</h1>
         <h3>HTML - CSS - Javascript</h3>
@@ -22,26 +23,30 @@
         </p>
     </header>
 
-    <figure class="quiz-container">
-        <h1>You Can Do It...!!!</h1>
-            <article>
-                <h2 id="question">Click start when you are ready</h2>
-                <button id="start">START</button>
-                <div class="card-contents" >
-                    <h4>Current Count: <span id="count">0</span></h4>
-                    <button id="decrement">Decrement</button>
-                    <button id="increment">Increment</button>
-                </div>
-                <ul id="selection">
-                    <li><button id="A">A</button></li>
-                    <li><button id="B">B</button></li>
-                    <li><button id="C">C</button></li>
-                    <li><button id="D">D</button></li>
-                </ul>   
-            </article>
+    <!-- Quiz Section -->
+    <figure class='quiz-container'>
+        <article class='quiz-section'>
+            <h1>You Can Do It...!!!</h1>
+            <h1 id='quizTimer'></h1>
+        </article>
+        
+        <article>
+            <h2 id='question'>Click start when you are ready</h2>
+            <button id='start'>START</button>
+            <ul>
+                <li id='selection'><button id='A'>A</button></li>
+                <li id='selection'><button id='B'>B</button></li>
+                <li id='selection'><button id='C'>C</button></li>
+                <li id='selection'><button id='D'>D</button></li>
+            </ul>   
+        </article>
+
+        <article>
+            <h2 id='name'>name</h2>
+            <h2 id='score'>score</h2>
+        </article>
 
     </figure>
-
-    
+   
 </body>
 </html>
