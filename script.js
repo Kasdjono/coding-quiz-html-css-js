@@ -1,32 +1,63 @@
+// ------ Variables affected by start button ------ //
 var startButton = document.querySelector('#start');
+var startComment = document.querySelector('question');
 var timeCount = document.querySelector('#quizTimer');
+var currentQuiestion = document.querySelector('#current-question');
 
+// ------ Variables used for asking/answering questions ------ //
 var selA_El = document.querySelector('#A');
 var selB_El = document.querySelector('#B');
 var selC_El = document.querySelector('#C');
 var selD_El = document.querySelector('#D');
+var questionBank = [Q1, Q2, Q3, Q4];
+var currentQuiestion = questionBank[questionNum];
+var questionNum = 0;
+
+// ------ User score for realtime display ------ //
+var winCounter = 0;
+
 
 // ------ User score and name ------ //
 var userScore = document.querySelector('#score');
 var userName = document.querySelector('#name');
+var isCorrect = document.querySelector('#correct-incorrect');
 
 
 
 // ------ Will display the name/score, saved on the browser ------ //
 
-renderLastRegistered();
+// renderLastRegistered();
 
-function renderLastRegistered() {
-  var email = localStorage.getItem("email");
-  var password = localStorage.getItem("password");
+// function renderLastRegistered() {
+//   var email = localStorage.getItem("email");
+//   var password = localStorage.getItem("password");
 
-  if (!email || !password) {
-    return;
-  }
+//   if (!email || !password) {
+//     return;
+//   }
 
-  userEmailSpan.textContent = email;
-  userPasswordSpan.textContent = password;
-}
+//   userEmailSpan.textContent = email;
+//   userPasswordSpan.textContent = password;
+// }
+
+
+
+
+// ------ Input typted  code for the last 3 questions ------ //
+document.addEventListener('click', function (event) {
+  if (event.target === startButton) {
+  updateApp();
+
+  startButton.setAttribute('style', 'display: none;');
+  startComment.setAttribute('style', 'display: none');
+  quizInstruction.setAttribute('style', 'display: none');
+
+  selA_El.setAttribute('style', 'display: block;');
+  selB_El.setAttribute('style', 'display: block;');
+  selC_El.setAttribute('style', 'display: block;');
+  selD_El.setAttribute('style', 'display: block;');
+  };
+});
 
 
 
@@ -39,7 +70,7 @@ var Q1 = {
     ansB: "2 green",
     ansC: "3 blue",
     ansD: "4 purple",
-    correctAns: 3
+    answer: 3
 };
 
 var Q2 = {
@@ -48,7 +79,7 @@ var Q2 = {
     ansB: "2 green",
     ansC: "3 blue",
     ansD: "4 purple",
-    correctAns: 2
+    answer: 2
 };
 
 var Q3 = {
@@ -57,7 +88,7 @@ var Q3 = {
     ansB: "2 green",
     ansC: "3 blue",
     ansD: "4 purple",
-    correctAns: 4
+    answer: 4
 };
 
 var Q4 = {
@@ -66,36 +97,30 @@ var Q4 = {
     ansB: "2 green",
     ansC: "3 blue",
     ansD: "4 purple",
-    correctAns: 1
+    answer: 1
 };
 
 
 
 
 // ------ Array for cycling through the questions ------ //
-var questionBank = [Q1, Q2, Q3, Q4];
-var currentQuiestion = questionBank[questionNum];
-
   function updateApp() {
-    currentQuiestion = questionBank
+    currentQuiestion = questionBank[questionNum];
+    selA_El = currentQuiestion.ansA;
+    selB_El = currentQuiestion.ansB;
+    selC_El = currentQuiestion.ansC;
+    selD_El = currentQuiestion.ansD;
+    return currentQuiestion;
   }
 
 
 
 
-
-// ------ Input typted  code for the last 3 questions ------ //
-document.addEventListener('click', function (event) {
-  if (event.target === startButton) {
-  updateApp();
-  startButton.setAttribute('style', 'display: none;');
-  quizInstruction.setAttribute('style', 'display: none');
-  selA_El.setAttribute('style', 'display: block;');
-  selB_El.setAttribute('style', 'display: block;');
-  selC_El.setAttribute('style', 'display: block;');
-  selD_El.setAttribute('style', 'display: block;');
-  };
-});
+// ------ Keeps track of score ------ //
+function setWins() {
+  window.textContent = winCounter;
+  localStorage.setItem("winCount", winCounter);
+}
 
 
 
@@ -107,6 +132,7 @@ document.addEventListener('click', function (event) {
         if (event.target.textContent[0] == currentQuiestion.answer) {
           showAnswer.textContent = "Correct!";
           isCorrect = "Correct!";
+          winCounter++;
           questionNum++;
           finalScore++;
           updateApp();
