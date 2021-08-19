@@ -151,7 +151,7 @@ function startTimer() {
       userName = window.prompt("Please enter a username");
       console.log(userName);
       setStorage();
-     
+      storedScore.textContent = finalScore;
       // Stops execution of action at set interval
       clearInterval(timer);
     }
