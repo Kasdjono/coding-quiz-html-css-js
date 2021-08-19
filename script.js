@@ -1,8 +1,8 @@
 // ------ Variables affected by start button ------ //
 var startButton = document.querySelector('#start');
-var startComment = document.querySelector('question');
+var startComment = document.querySelector('#question');
 var timeCount = document.querySelector('#quizTimer');
-var currentQuiestion = document.querySelector('#current-question');
+var displayQuestion = document.querySelector('#current-question');
 
 // ------ Variables used for asking/answering questions ------ //
 var selA_El = document.querySelector('#A');
@@ -10,12 +10,11 @@ var selB_El = document.querySelector('#B');
 var selC_El = document.querySelector('#C');
 var selD_El = document.querySelector('#D');
 var questionBank = [Q1, Q2, Q3, Q4];
-var currentQuiestion = questionBank[questionNum];
+var currentQuestion = "";
 var questionNum = 0;
 
 // ------ User score for realtime display ------ //
 var winCounter = 0;
-
 
 // ------ User score and name ------ //
 var userScore = document.querySelector('#score');
@@ -24,39 +23,23 @@ var isCorrect = document.querySelector('#correct-incorrect');
 
 
 
-// ------ Will display the name/score, saved on the browser ------ //
 
-// renderLastRegistered();
+// ------ Start Button Function ------ //
+startButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  console.log(startButton);
 
-// function renderLastRegistered() {
-//   var email = localStorage.getItem("email");
-//   var password = localStorage.getItem("password");
-
-//   if (!email || !password) {
-//     return;
-//   }
-
-//   userEmailSpan.textContent = email;
-//   userPasswordSpan.textContent = password;
-// }
-
-
-
-
-// ------ Input typted  code for the last 3 questions ------ //
-document.addEventListener('click', function (event) {
-  if (event.target === startButton) {
+  startTimer();
   updateApp();
 
   startButton.setAttribute('style', 'display: none;');
   startComment.setAttribute('style', 'display: none');
-  quizInstruction.setAttribute('style', 'display: none');
+  //quizInstruction.setAttribute('style', 'display: none');
 
   selA_El.setAttribute('style', 'display: block;');
   selB_El.setAttribute('style', 'display: block;');
   selC_El.setAttribute('style', 'display: block;');
   selD_El.setAttribute('style', 'display: block;');
-  };
 });
 
 
@@ -103,14 +86,34 @@ var Q4 = {
 
 
 
+
+var selA_El = document.querySelector('#A');
+var selB_El = document.querySelector('#B');
+var selC_El = document.querySelector('#C');
+var selD_El = document.querySelector('#D');
+var questionBank = [Q1, Q2, Q3, Q4];
+var currentQuestion = "";
+var questionNum = 0;
+    console.log(questionBank);
+    console.log(currentQuestion);
+    console.log(questionNum);
+
 // ------ Array for cycling through the questions ------ //
   function updateApp() {
-    currentQuiestion = questionBank[questionNum];
-    selA_El = currentQuiestion.ansA;
-    selB_El = currentQuiestion.ansB;
-    selC_El = currentQuiestion.ansC;
-    selD_El = currentQuiestion.ansD;
-    return currentQuiestion;
+    if (questionNum < 4) {
+    console.log(questionNum);
+    
+    currentQuestion = questionBank[questionNum];
+    console.log(questionBank);
+    console.log(currentQuestion);
+    
+    displayQuestion.textContent = currentQuestion.question;
+    selA_El = currentQuestion.ansA;
+    selB_El = currentQuestion.ansB;
+    selC_El = currentQuestion.ansC;
+    selD_El = currentQuestion.ansD;
+    return currentQuestion;
+    }
   }
 
 
@@ -128,8 +131,9 @@ function setWins() {
 // ------ 4 buttons to select on the first 4 questions ------ //
 
 document.addEventListener('click', function (event) {
+  event.preventDefault();
     if (event.target === selA_El || selB_El || selC_El || selD_El) {
-        if (event.target.textContent[0] == currentQuiestion.answer) {
+        if (event.target.textContent[0] == currentQuestion.answer) {
           showAnswer.textContent = "Correct!";
           isCorrect = "Correct!";
           winCounter++;
@@ -155,16 +159,8 @@ document.addEventListener('click', function (event) {
 
 // ------ Timer section (-10 sec per incorrect answer in previous block) ------ //
 
-var count = 60;
+var count = 10;
 var timer;
-
-document.addEventListener('click', function(event) {
-  if (event.target === startButton) {
-    console.log(startButton);
-    //runQuiz();
-    startTimer();
-  }
-});
 
 function startTimer() {
   timer = setInterval(function() {
@@ -173,6 +169,10 @@ function startTimer() {
     timeCount.textContent = count;
 
     if(count === 0) {
+      userScore = winCounter;
+      userName = window.prompt("Please enter a username");
+      console.log(userName);
+  
       // Stops execution of action at set interval
       clearInterval(timer);
     }
@@ -189,3 +189,54 @@ function startTimer() {
 // ------ tracks score of user ------ //
 
 // at the end it will give the score and save the username 
+
+
+
+// ------ Start Button Alternative ------ //
+// document.addEventListener('click', function (event) {
+//   if (event.target === startButton) {
+//     event.preventDefault();
+//     updateApp();
+
+//   startButton.setAttribute('style', 'display: none;');
+//   startComment.setAttribute('style', 'display: none');
+//   quizInstruction.setAttribute('style', 'display: none');
+
+//   selA_El.setAttribute('style', 'display: block;');
+//   selB_El.setAttribute('style', 'display: block;');
+//   selC_El.setAttribute('style', 'display: block;');
+//   selD_El.setAttribute('style', 'display: block;');
+//   };
+// });
+
+
+
+// ------ Start Button Alternative ------ //
+// document.addEventListener('click', function(event) {
+//   event.preventDefault();
+//   if (event.target === startButton) {
+//     console.log(startButton);
+//     //runQuiz();
+//     startTimer();
+//     updateApp();
+//   }
+// });
+
+
+
+
+// ------ Will display the name/score, saved on the browser ------ //
+
+// renderLastRegistered();
+
+// function renderLastRegistered() {
+//   var email = localStorage.getItem("email");
+//   var password = localStorage.getItem("password");
+
+//   if (!email || !password) {
+//     return;
+//   }
+
+//   userEmailSpan.textContent = email;
+//   userPasswordSpan.textContent = password;
+// }
