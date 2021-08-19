@@ -51,29 +51,29 @@ var Q1 = {
 };
 
 var Q2 = {
-  question: "What color is the grass?",
-  ansA: "1 red",
-  ansB: "2 green",
-  ansC: "3 blue",
-  ansD: "4 purple",
+  question: "What is css used for?",
+  ansA: "1 performs functions on variables",
+  ansB: "2 to style the webpage",
+  ansC: "3 give the website its structure",
+  ansD: "4 links the programs together",
   answer: 2
 };
 
 var Q3 = {
-  question: "What color are the Lakers?",
-  ansA: "1 red",
-  ansB: "2 green",
-  ansC: "3 blue",
-  ansD: "4 purple",
+  question: "What do we store values in?",
+  ansA: "1 class",
+  ansB: "2 id",
+  ansC: "3 function",
+  ansD: "4 variable",
   answer: 4
 };
 
 var Q4 = {
-  question: "What color is the rose?",
-  ansA: "1 red",
-  ansB: "2 green",
-  ansC: "3 blue",
-  ansD: "4 purple",
+  question: "What character do we use to define an id in css?",
+  ansA: "1 #",
+  ansB: "2 !",
+  ansC: "3 .",
+  ansD: "4 /",
   answer: 1
 };
 

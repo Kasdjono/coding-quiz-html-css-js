@@ -28,6 +28,8 @@
 ## Screen Shots of Profile Page
 <br/>
 
+        - The following pictures were taken before the proper questions were written
+
 !["screen shot 1 of website after adjustments"](./assets/images/image-1.png)
 
 !["screen shot 2 of website after adjustments"](./assets/images/image-2.png)
