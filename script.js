@@ -3,6 +3,7 @@ var startButton = document.querySelector('#start');
 var startComment = document.querySelector('#question');
 var timeCount = document.querySelector('#quizTimer');
 var displayQuestion = document.querySelector('#current-question');
+var displayButton = document.querySelector('#selection');
 
 // ------ User score for realtime display ------ //
 var finalScore = 0;
@@ -31,10 +32,7 @@ startButton.addEventListener('click', function (event) {
   updateApp();
   startButton.setAttribute('style', 'display: none;');
   startComment.setAttribute('style', 'display: none');
-  selA_El.setAttribute('style', 'display: block;');
-  selB_El.setAttribute('style', 'display: block;');
-  selC_El.setAttribute('style', 'display: block;');
-  selD_El.setAttribute('style', 'display: block;');
+  displayButton.setAttribute('style', 'display: block;');
 });
 
 
